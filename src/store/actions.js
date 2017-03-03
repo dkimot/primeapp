@@ -11,3 +11,9 @@ export const getApps = ({ commit }, key) => {
     commit('RECEIVE_APPS', apps)
   })
 }
+
+export const newProduct = ({ commit }, product) => {
+  api.newProduct(product => {
+    commit('NEW_PRODUCT', product)
+  })
+}
