@@ -1,24 +1,35 @@
-<template>
+width: 175px<template>
   <div id="menu">
         <div class="pure-menu">
-            <a class="pure-menu-heading" href="#">Company</a>
+            <a class="pure-menu-heading" href="#">Prime Systems</a>
 
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
-
-                <li class="pure-menu-item menu-item-divided">
-                    <a href="#" class="pure-menu-link">Services</a>
-                </li>
-
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+              <li class="pure-menu-item" v-for="app in appList">
+                <router-link v-if="app.access" :to="app.route" class="pure-menu-link">{{ app.name }}</router-link>
+              </li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
-  export default {}
+  import {mapActions, mapState } from 'vuex'
+  import Profile from './Profile'
+
+  export default {
+    computed: {
+      ...mapState({
+        appList: state => state.apps.all
+      })
+    },
+    methods: mapActions([
+      'getApps'
+    ]),
+    created () {
+      this.getApps()
+    },
+    components: { Profile }
+  }
 </script>
 
 <style lang="scss">
@@ -53,12 +64,12 @@ This is the parent `<div>` that contains the menu and the content area.
   padding-left: 0;
 }
   #layout.active #menu {
-      left: 150px;
-      width: 150px;
+      left: 175px;
+      width: 175px;
   }
 
   #layout.active .menu-link {
-      left: 150px;
+      left: 175px;
   }
 /*
 The content `<div>` is where all your content goes.
@@ -104,8 +115,8 @@ appears on the left side of the page.
 */
 
 #menu {
-  margin-left: -150px; /* "#menu" width */
-  width: 150px;
+  margin-left: -175px; /* "#menu" width */
+  width: 175px;
   position: fixed;
   top: 0;
   left: 0;
@@ -240,21 +251,21 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   }
 
   #layout {
-      padding-left: 150px; /* left col width "#menu" */
+      padding-left: 175px; /* left col width "#menu" */
       left: 0;
   }
   #menu {
-      left: 150px;
+      left: 175px;
   }
 
   .menu-link {
       position: fixed;
-      left: 150px;
+      left: 175px;
       display: none;
   }
 
   #layout.active .menu-link {
-      left: 150px;
+      left: 175px;
   }
 }
 
@@ -267,7 +278,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   */
   #layout.active {
       position: relative;
-      left: 150px;
+      left: 175px;
   }
 }
 

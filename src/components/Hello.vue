@@ -1,15 +1,15 @@
 <template>
   <div>
+    <profile></profile>
   </div>
 </template>
 
 <script>
+import Profile from './Profile'
+
 export default {
   name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+  components: { Profile }
 }
+
 </script>
