@@ -4,6 +4,8 @@ import * as actions from './actions'
 import * as getters from './getters'
 import apps from './modules/apps'
 import profile from './modules/profile'
+import ui from './modules/ui'
+import products from './modules/products'
 
 Vue.use(Vuex)
 
@@ -14,7 +16,9 @@ export default new Vuex.Store({
   getters,
   modules: {
     apps,
-    profile
+    profile,
+    products,
+    ui
   },
   strict: debug
 })

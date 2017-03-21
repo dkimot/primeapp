@@ -1,19 +1,27 @@
 <template>
   <div>
     <h1 class="float-left">Product Manager</h1>
-    <button class="pure-button" @click="showNewProduct = !showNewProduct" id='action-btn'>Show New Product</button>
-    <new-product v-if="showNewProduct"></new-product>
+    <new-product></new-product><br />
+    <edit-product></edit-product>
   </div>
 </template>
 
 <script>
-import NewProduct from './products/NewProduct'
+import NewProduct from './products/NewProduct';
+import EditProduct from './products/EditProduct';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'product-manager',
-  components: { NewProduct },
-  props: {
-    showNewProduct: false
+  components: {
+    NewProduct,
+    EditProduct
+  },
+  methods: mapActions([
+    'getProducts'
+  ]),
+  created: function() {
+    this.getProducts()
   }
 }
 </script>
